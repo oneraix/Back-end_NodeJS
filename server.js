@@ -1,7 +1,7 @@
 import express, { request } from "express";
 import mysql from 'mysql2/promise';
 import { DataTypes, Sequelize } from "sequelize";
-import initModels from "./models/init-models.js";
+import initModels from "./src/models/init-models.js";
 
 const app = express()
 
