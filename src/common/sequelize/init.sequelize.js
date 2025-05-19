@@ -2,7 +2,7 @@ import { Sequelize } from "sequelize";
 import { DATABASE_URL } from "../constant/app.constant.js";
 import initModels from "../../models/init-models.js";
 // SEQUELIZE
-const sequelize = new Sequelize(DATABASE_URL, { logging: true });
+const sequelize = new Sequelize(process .env.DATABASE_URL, { logging: true });
 export const models = initModels(sequelize);
 
 try {
