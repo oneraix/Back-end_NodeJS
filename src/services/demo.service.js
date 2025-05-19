@@ -1,3 +1,4 @@
+import { BadrequestException } from "../common/helpers/exception.helper.js";
 import pool from "../common/mysql2/init.mysql2.js";
 import { models } from "../common/sequelize/init.sequelize.js";
 import Roles from "../models/Roles-by-myself.js";
@@ -36,12 +37,24 @@ const demoService ={
 
 
    mysql2: async () => {
+
       const [rows, fields] = await pool.query("SELECT * FROM Roles");
 
       return rows;
    },
 
-      sequelize: async () => {
+
+   sequelize: async () => {
+      //lỗi không kiểm soát được
+      //console.log(abc)
+
+      //lỗi kiểm soát được
+      const passUser ="1234"
+      const passDB = "123"
+      if(passUser !== passDB){
+         throw new BadrequestException("Sai mật khẩu")
+      }
+
       const listRole1 = await Roles.findAll();
 
       const listRole2 = await models.Roles.findAll();

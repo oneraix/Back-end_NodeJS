@@ -7,3 +7,13 @@ export const responseSuccess = (data = null, message=`ok`, statusCode= 200)=>{
         doc: "domain.com/swagger",
     };
 }
+
+export const responseError = (message= `Internal Server Error`, statusCode = 500, stack = null)=>{
+    return{
+        status: `error`,
+        statusCode: statusCode,
+        message: message,
+        stack: stack,
+        doc:"domain.com/swagger",
+    };
+}
