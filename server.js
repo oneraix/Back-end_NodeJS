@@ -6,17 +6,18 @@ import { DATABASE_URL } from "./src/common/constant/app.constant.js";
 import handleError from "./src/common/helpers/handleError.helper.js";
 import morgan from "morgan";
 import logApi from "./src/common/morgan/init.morgan.js";
+import prisma from "./src/common/prisma/init.prisma.js";
+import cors from "cors"
 const app = express()
 
 //middleware
 app.use(express.json())// chuyển dữ liệu từ JSON sang dôi tượng javascript
-
+app.use(cors({origin:'*'}))
 app.use(logApi);
 
 
 app.use(rootRouter)
 app.use(handleError)
-
 
 
 
