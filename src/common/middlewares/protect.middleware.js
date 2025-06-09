@@ -5,6 +5,7 @@ import jwt from "jsonwebtoken";
 import prisma from "../prisma/init.prisma";
 
 const protect = async (req, res, next) =>{
+    req.isProtect = true;
     const authHeader =req.headers?.authorization || ""
     const [type, token] = authHeader.split(" ")
     if(!token){
@@ -17,7 +18,8 @@ const protect = async (req, res, next) =>{
     //kiểm tra token
     //nếu chạy quaa là token hợp lệ
     //nếu có lỗi thì tự throw (jwt.verify), chúng ta không cần throw
-    const decode = tokenService.verifyToken(token)
+    console.log({token});
+    const decode = tokenService.verifyAccessToken(token)
     const user = await prisma.users.findUnique({
         where:{
             id:decode.userId,
